@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akhil | UI/UX Designer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    padding: 40px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Hero */
+h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+#typing {
+    font-size: 24px;
+    color: #00c6ff;
+}
+
+/* Cursor */
+#typing::after {
+    content: "|";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%,100% {opacity:1;}
+    50% {opacity:0;}
+}
+
+/* Cards */
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    transition: all 0.4s ease;
+    transform: translateY(40px);
+    opacity: 0;
+}
+
+/* Hover */
+.card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 25px rgba(0,198,255,0.3);
+}
+
+/* Button */
+.btn {
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* Reveal Animation */
+.show {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.8s ease;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Hi, I'm Akhil 👋</h1>
+<h2><span id="typing"></span></h2>
+
+<div class="card">
+<h2>About Me</h2>
+<p>I design user-centered digital experiences with a focus on usability, accessibility, and aesthetics. Passionate about solving real-world problems using UX thinking and modern UI design.</p>
+</div>
+
+<div class="card">
+<h2>Skills</h2>
+<p>Wireframing • Prototyping • Figma • UI Design • UX Research • Usability Testing • HTML • CSS • JavaScript</p>
+</div>
+
+<div class="card">
+<h2>Projects</h2>
+<ul>
+<li><b>FarmB</b> – Smart Agriculture UI platform for farmers</li>
+<li><b>IPO Dashboard</b> – Clean financial UI with data visualization</li>
+<li><b>Business Directory</b> – User-friendly listing interface</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>Case Study</h2>
+<p><b>FarmB App:</b> Designed a simple and accessible interface for farmers to get crop insights and expert help. Focused on usability for low-tech users.</p>
+</div>
+
+<div class="card">
+<h2>Contact</h2>
+<p>Email: gandlojuakhil6@gmail.com</p>
+<button class="btn">Hire Me</button>
+</div>
+
+</div>
+
+<!-- Typing Animation -->
+<script>
+const roles = [
+  "UI/UX Designer",
+  "Web Developer",
+  "User Experience Enthusiast",
+  "Creative Problem Solver"
+];
+
+let i = 0, j = 0, current = "", deleting = false;
+
+function type() {
+    current = roles[i];
+    
+    if (!deleting) {
+        document.getElementById("typing").innerHTML = current.substring(0, j++);
+    } else {
+        document.getElementById("typing").innerHTML = current.substring(0, j--);
+    }
+
+    if (!deleting && j === current.length + 1) {
+        deleting = true;
+        setTimeout(type, 1000);
+        return;
+    }
+
+    if (deleting && j === 0) {
+        deleting = false;
+        i = (i + 1) % roles.length;
+    }
+
+    setTimeout(type, deleting ? 50 : 100);
+}
+
+type();
+</script>
+
+<!-- Scroll Animation -->
+<script>
+const cards = document.querySelectorAll('.card');
+
+window.addEventListener('scroll', () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+
+        if(cardTop < triggerBottom) {
+            card.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
